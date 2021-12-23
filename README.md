@@ -25,7 +25,7 @@ import (
 )
 
 func init() {
-	// Initialize the arb package to automatically removed expired arb keys stored in the memories.
+	// Initialize the arb package to automatically removed expired arb keys stored in the memories of the server
 	arb.RunClearExpiredArbKeys()
 }
 
