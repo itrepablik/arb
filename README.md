@@ -1,4 +1,4 @@
-![pwd package](https://user-images.githubusercontent.com/58651329/144160290-996de8ec-3a13-48fe-9474-99cac1367aa8.png)
+![arb package](https://user-images.githubusercontent.com/58651329/147187623-8e0ede54-8188-491c-9757-a4742907b0dc.png)
 
 # Installation
 ```
