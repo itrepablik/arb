@@ -16,7 +16,7 @@ This is how you can use the arb package to generate secure encrypted text and ab
 package main
 
 import (
-		"fmt"
+	"fmt"
 	"log"
 	"time"
 
