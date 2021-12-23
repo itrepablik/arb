@@ -30,7 +30,7 @@ func init() {
 }
 
 func main() {
-		sensitiveData := "This is a secret message"
+	sensitiveData := "This is a secret message"
 
 	// Generate a secure 32 bytes random salt
 	secretKey, err := tago.GenerateSecretKey(32)
@@ -48,7 +48,7 @@ func main() {
 		ArbKey:    ciphertext,
 		SecretKey: secretKey,
 		IV:        iv,
-		ExpiresIn: time.Now().Add(time.Minute * 30).Unix(),
+		ExpiresIn: time.Now().Add(time.Minute * 30).Unix(), // If zero, the arb key will never expire
 	}
 
 	arbKey, err := arb.CreateArbKey(ciphertext, arbData)
@@ -65,6 +65,9 @@ func main() {
 	fmt.Println("decodedArbKey:", decodedArbKey)
 }
 ```
+
+For now, there is no persistence layer for arb keys in the database or local storage.
+This is the current limitation of the arb package and will be addressed in the future.
 
 # Subscribe to Maharlikans Code Youtube Channel:
 Please consider subscribing to my Youtube Channel to recognize my work on any of my tutorial series. Thank you so much for your support!
