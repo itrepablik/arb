@@ -6,7 +6,7 @@ go get -u github.com/itrepablik/arb
 ```
 
 # Arb
-Manages your arbitrary data to be securely encrypted and decrypted accordingly in your next Go's app. In most cases, you can use this when you want to encrypt your plain text password at any of your configurations files, or you wanted to encrypt your sensitive information before it submits to the online forms like login events. 
+Manages your arbitrary data to be securely encrypted and decrypted accordingly in your next Go's app. In most cases, you can use this when you want to encrypt your plain text password at any of your configuration files, or you wanted to encrypt your sensitive information before it submits to the online forms like login events at the client side.
 
 Although the SSL is the frontline security protocol for our site, it's good to have a plan b type of security level just to ensure that when the SSL is not being renewed automatically, at least we have some degree of protection against the cyberattack when our vulnerable and valuable data being transmitted back and forth to our web server.
 
