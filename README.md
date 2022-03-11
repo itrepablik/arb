@@ -24,11 +24,6 @@ import (
 	"github.com/itrepablik/tago"
 )
 
-func init() {
-	// Initialize the arb package to automatically removed expired arb keys stored in the memories of the server
-	arb.RunClearExpiredArbKeys()
-}
-
 func main() {
 	sensitiveData := "This is a secret message"
 
@@ -63,6 +58,9 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Println("decodedArbKey:", decodedArbKey)
+
+    // To initialize the arb package to automatically removed expired arb keys stored in the memories of the server
+	arb.RunClearExpiredArbKeys()
 }
 ```
 
