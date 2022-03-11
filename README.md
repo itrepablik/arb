@@ -1,7 +1,7 @@
 ![arb package](https://user-images.githubusercontent.com/58651329/147187623-8e0ede54-8188-491c-9757-a4742907b0dc.png)
 
 # Installation
-```
+```go
 go get -u github.com/itrepablik/arb
 ```
 
@@ -12,7 +12,7 @@ Although the SSL is the frontline security protocol for our site, it's good to h
 
 # Usage
 This is how you can use the arb package to generate secure encrypted text and able to decode it securely as well.
-```
+```go
 package main
 
 import (
