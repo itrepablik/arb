@@ -59,7 +59,7 @@ func main() {
 	}
 	fmt.Println("decodedArbKey:", decodedArbKey)
 
-    // To initialize the arb package to automatically removed expired arb keys stored in the memories of the server
+    	// To initialize the arb package to automatically removed expired arb keys stored in the memories of the server
 	arb.RunClearExpiredArbKeys()
 }
 ```
