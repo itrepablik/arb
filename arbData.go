@@ -11,8 +11,6 @@ import (
 	"github.com/itrepablik/tago"
 )
 
-var mu = &sync.RWMutex{} // read-write mutex, multiple readers, single writer
-
 // RawData returns the raw arbritary data
 type RawData struct {
 	SensitiveData string `json:"sensitive_data"`
@@ -29,6 +27,7 @@ type ArbData struct {
 // ArbFacts is the arbritary facts model to be stored in the memory
 type ArbFacts struct {
 	Facts map[string][]byte
+	mu    sync.RWMutex // read-write mutex, multiple readers, single writer
 }
 
 // AF is the arbritary facts map
@@ -46,9 +45,6 @@ func RunClearExpiredArbKeys() {
 
 // ClearExpiredArbKeys removes all the expired arb keys
 func ClearExpiredArbKeys() {
-	mu.RLock()
-	defer mu.RUnlock()
-
 	for k, v := range AF.Facts {
 		if v != nil {
 			payLoad, err := DecodePayload(k)
@@ -137,8 +133,8 @@ func (t *ArbFacts) Add(arbKey string, encBytes []byte) error {
 		return errors.New("arb key is required")
 	}
 
-	mu.RLock()
-	defer mu.RUnlock()
+	t.mu.Lock() // lock the mutex before writing to the struct and unlock the mutex after writing to the struct
+	defer t.mu.Unlock()
 
 	// Check if the arbitrary key already exists
 	_, isArbKeyFound := t.Get(arbKey)
@@ -151,8 +147,8 @@ func (t *ArbFacts) Add(arbKey string, encBytes []byte) error {
 
 // Get gets the arbitrary from the 'ArbFacts' map by arb key
 func (t *ArbFacts) Get(arbKey string) ([]byte, bool) {
-	mu.RLock()
-	defer mu.RUnlock()
+	t.mu.RLock() // read lock to read the data from the struct and unlock the mutex after reading the data
+	defer t.mu.RUnlock()
 
 	encBytes, ok := t.Facts[arbKey]
 	return encBytes, ok
@@ -164,8 +160,8 @@ func (t *ArbFacts) Remove(arbKey string) (bool, error) {
 		return false, errors.New("arb key is required")
 	}
 
-	mu.RLock()
-	defer mu.RUnlock()
+	t.mu.Lock() // lock the mutex before writing to the struct and unlock the mutex after writing to the struct
+	defer t.mu.Unlock()
 
 	_, isTokFound := t.Get(arbKey)
 	if isTokFound {
